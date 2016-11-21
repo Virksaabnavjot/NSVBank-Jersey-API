@@ -21,6 +21,13 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <!--Adding Jersey Dependency-->
+        <dependency> 
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <!-- -->
     </dependencies>
 
     <build>
@@ -70,6 +77,23 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Adding Plugin Servlet Specification pom.xml -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.2.4.v20141103</version>
+                <configuration>
+                    <httpConnector>
+                        <!-- make jetty listen on 127.0.0.1 for better security -->
+                        <!--host>127.0.0.1</host-->
+                    </httpConnector>
+                    <scanIntervalSeconds>3</scanIntervalSeconds>
+                    <webAppConfig>
+                        <!-- defaultsDescriptor>src/test/resources/jetty-maven-plugin-webdefault.xml</defaultsDescriptor -->
+                    </webAppConfig>
+                </configuration>
+            </plugin>
+            <!-- -->
         </plugins>
     </build>
 
