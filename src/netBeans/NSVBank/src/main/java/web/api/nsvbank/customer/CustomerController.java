@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package web.api.nsvbank.customer;
 
 /**
  *
- * @author navNav
+ * @author Navjot Singh Virk
+ * Date: 21st November 2016
+ * Time: 4:00 pm (Dublin,Ireland)
  */
 public class CustomerController {
     
