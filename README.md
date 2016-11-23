@@ -1,4 +1,4 @@
-# NSVBank
+# NSVBank Ireland
 NSV Bank - A Maven Web Service Project for a Online Bank Web Service API
 
 Web API URL: http://localhost:8080/api/bank/
