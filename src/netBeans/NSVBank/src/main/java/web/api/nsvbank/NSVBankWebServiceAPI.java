@@ -8,6 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import web.api.nsvbank.account.Account;
@@ -46,12 +47,11 @@ public class NSVBankWebServiceAPI {
     
     @GET
     @Path("/accounts")
-    @Produces("application/json")
-    public Response accounts(@Context UriInfo info){
+    @Produces({ MediaType.APPLICATION_XML})
+    public List<Account> accounts(){
         AccountController accountController = new AccountController();
         List <Account> accounts = accountController.getAccounts();
-        Gson gson = new Gson();
-        return Response.status(200).entity(gson.toJson(accounts)).build();
+        return accounts;
     }
     
     @GET
