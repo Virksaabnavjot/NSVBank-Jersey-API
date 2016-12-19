@@ -16,21 +16,31 @@ import web.api.nsvbank.transaction.Transaction;
 
 public class Account {
     //declaring data members
-    int accountNumber;
-    String sortCode;
-    Double currentBalance;
+    private int id;
+    private int accountNumber;
+    private String sortCode;
+    private Double currentBalance;
     List <Transaction> transactions;
     
     //constructor
     public Account(){
+        id = 0;
         accountNumber = 0;
         sortCode = "";
         currentBalance = 0.0;
         transactions = new ArrayList<>();
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getAccountNumber() {
         return accountNumber;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setAccountNumber(int accountNumber) {
