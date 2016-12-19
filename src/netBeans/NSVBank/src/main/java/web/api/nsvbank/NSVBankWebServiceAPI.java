@@ -47,7 +47,7 @@ public class NSVBankWebServiceAPI {
     
     @GET
     @Path("/accounts")
-    @Produces({ MediaType.APPLICATION_XML})
+    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Account> accounts(){
         AccountController accountController = new AccountController();
         List <Account> accounts = accountController.getAccounts();
