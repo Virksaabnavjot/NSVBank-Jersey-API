@@ -33,8 +33,7 @@ public class CustomerController {
         customers.add(customer);
         return customers;
     }
-    
-       
+     
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Customer");
     private EntityManager em = emf.createEntityManager();
     private EntityTransaction tx = em.getTransaction();        

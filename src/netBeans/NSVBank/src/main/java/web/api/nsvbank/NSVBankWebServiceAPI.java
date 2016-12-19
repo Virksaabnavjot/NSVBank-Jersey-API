@@ -1,11 +1,16 @@
 //Project Github: https://github.com/Virksaabnavjot/NSVBank
+//The project may contains code snippets from examples available on Moodle.
 package web.api.nsvbank;
 
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -27,6 +32,7 @@ import web.api.nsvbank.transaction.TransactionController;
  * @Modification History
  * Modified on: 23rd November/2016 by Navjot at 9:02pm, 9:39pm
  * Modified on: Wed 24th November/2016 by Soffyan at 11:00am
+ * Modified on: 19th December/2016 by Navjot at 5:20pm
  */
 
 @Path("bank")
@@ -74,5 +80,116 @@ public class NSVBankWebServiceAPI {
         return Response.status(200).entity(gson.toJson(customers)).build();
     }
     
+    
+    //===========================================
+    //=         REST API methods for Customers
+    //===========================================
+    
+    CustomerController customerController = new CustomerController();
+    
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Path("/customers")
+    public List<Customer> listCustomers() {
+        List <Customer> customers = customerController.retrieveCustomers();
+        return customers;
+    }
+    
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Path("customers/{id}")
+    public Customer getCustomer(@PathParam("id") int id) {
+        return customerController.retrieveCustomer(id);
+    }
+    
+    @POST
+    @Path("/customers")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Customer saveCustomer(Customer customer) {
+        return customerController.createCustomer(customer);
+    }
+    
+    @DELETE
+    @Path("/customers/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void removeCustomer(@PathParam("id") int id) {
+        customerController.deleteCustomer(id);
+    }
+    
+    //===========================================
+    //=         REST API methods for Accounts
+    //===========================================
+
+    AccountController accountController = new AccountController();
+    
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Path("/accounts")
+    public List<Account> listAccounts() {
+        List <Account> accounts = accountController.retrieveAccounts();
+        return accounts;
+    }
+    
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Path("accounts/{id}")
+    public Account getAccount(@PathParam("id") int id) {
+        return accountController.retrieveAccount(id);
+    }
+    
+    @POST
+    @Path("/accounts")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Account saveAccount(Account account) {
+        return accountController.createAccount(account);
+    }
+    
+    @DELETE
+    @Path("/accounts/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void removeBook(@PathParam("id") int id) {
+        accountController.deleteAccount(id);
+    }
    
+    
+    //===========================================
+    //=    REST API methods for Transactions
+    //===========================================
+    
+    TransactionController transactionController = new TransactionController();
+    
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Path("/transactions")
+    public List<Transaction> listTransactions() {
+        List <Transaction> transactions = transactionController.retrieveTransactions();
+        return transactions;
+    }
+    
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Path("transactions/{id}")
+    public Transaction getTransaction(@PathParam("id") int id) {
+        return transactionController.retrieveTransaction(id);
+    }
+    
+    @POST
+    @Path("/transactions")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Transaction saveTransaction(Transaction transaction) {
+        return transactionController.createTransaction(transaction);
+    }
+    
+    /** Since, the transactions are kept for life we have excluded this delete method
+    @DELETE
+    @Path("/transactions/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public void removeTransaction(@PathParam("id") int id) {
+        transactionController.deleteTransaction(id);
+    }
+    **/
+    
 }
