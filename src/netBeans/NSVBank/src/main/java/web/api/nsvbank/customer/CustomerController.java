@@ -20,6 +20,7 @@ import javax.persistence.criteria.Root;
  * @Modification History
  * Modified on: Wed 24th November/2016 by Soffyan at 11:00am
  * Modified by Valentin Buliga on 19 December 2016
+ * Modified on: 19th December/2016 by Navjot at 7:18 pm
  */
 public class CustomerController {
     List <Customer> customers;

@@ -20,6 +20,7 @@ import javax.persistence.criteria.Root;
  * @Modification History
  * Modified on: 23rd November/2016 by Navjot at 9:23pm
  * Modified by Valentin Buliga on 19 December 2016
+ * Modified on: 19th December/2016 by Navjot at 7:20pm
  */
 public class TransactionController {
     List <Transaction> transactions;
