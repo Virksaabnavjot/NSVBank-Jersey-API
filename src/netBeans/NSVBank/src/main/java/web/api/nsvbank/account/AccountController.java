@@ -21,37 +21,11 @@ import web.api.nsvbank.transaction.TransactionController;
  * @Modification History
  * Modified on: 23rd November/2016 by Navjot at 8:58pm
  * Modified by Valentin Buliga on 19 December 2016
+ * Modified on: 19th December/2016 by Navjot at 7:12 pm
  */
 public class AccountController {
-    List <Account> accounts;
-    
-    public AccountController(){
-        accounts = new ArrayList<>();
-    }
 
-    public Account getAccount() {
-        Account account = new Account();
-        TransactionController transactionController = new TransactionController();
-        account.setAccountNumber(123456789);
-        account.setCurrentBalance(299.89);
-        account.setSortCode("NSV1298");
-        account.setTransactions(transactionController.getTransactions());
-        //accounts.add(account);
-        return account;
-    }
-
-    public List<Account> getAccounts() {
-        Account account = getAccount();
-        accounts.add(account);
-        accounts.add(account);
-        return accounts;
-    }
-   
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
-    }
-  
-      private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Account");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Account");
     private EntityManager em = emf.createEntityManager();
     private EntityTransaction tx = em.getTransaction();
     
@@ -70,14 +44,14 @@ public class AccountController {
     }
     
     public Account retrieveAccount(int id) {
-        Account test = em.find(Account.class, id);
+        Account account = em.find(Account.class, id);
         em.close();
-        return test;
+        return account;
     }
     
     public Account createAccount(Account b) { 
-        Account test = em.find(Account.class, b.getId());
-        if (test == null) {
+        Account account = em.find(Account.class, b.getId());
+        if (account == null) {
             tx.begin();
             em.persist(b);
             tx.commit();
@@ -89,10 +63,10 @@ public class AccountController {
     }
        
     public Account UpdateAccount(Account b, int id) { 
-        Account test = em.find(Account.class, id);
-        if (test != null) {
+        Account account = em.find(Account.class, id);
+        if (account != null) {
             tx.begin();
-            em.remove(test);
+            em.remove(account);
             em.persist(b);
             tx.commit();
             em.close();
@@ -103,10 +77,10 @@ public class AccountController {
     
     
     public void deleteAccount(int id) {
-        Account test = em.find(Account.class, id);
-        if (test !=null) {
+        Account account = em.find(Account.class, id);
+        if (account !=null) {
             tx.begin();
-            em.remove(test);
+            em.remove(account);
             tx.commit();
             
             em.close();

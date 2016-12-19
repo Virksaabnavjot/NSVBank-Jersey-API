@@ -1,6 +1,11 @@
 package web.api.nsvbank.transaction;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -10,25 +15,32 @@ import java.util.Date;
  * 
  * @Modification History
  * Modified on: 23rd November/2016 by Navjot at 8:06pm
+ * Modified on: Mon 19th December/2016 by Navjot at 6:50 pm
  */
 
-public class Transaction {
+@Entity
+@Table
+@XmlRootElement
+public class Transaction implements Serializable{
     //declare data members
-    int transactionId;
-    Double transactionAmount;
-    Date transactionDate;
-    String transactionDescription;
-    Double postTransactionBalance;
+    @Id
+    //    @GeneratedValue(strategy = GenerationType.TABLE)
+    private int transactionId;
+    private Double transactionAmount;
+    private Date transactionDate;
+    private String transactionDescription;
+    private Double postTransactionBalance;
     
     //constructor
-    public Transaction(){
-        transactionId = 0;
-        transactionAmount = 0.0;
-        transactionDate = new Date();
-        transactionDescription = "";
-        postTransactionBalance = 0.0;
+    public Transaction(int transactionId, Double transactionAmount, Date transactionDate, String transactionDescription, Double posttransactionBalance){
+        this.transactionId = transactionId;
+        this.transactionAmount = transactionAmount;
+        this.transactionDate = transactionDate;
+        this.transactionDescription = transactionDescription;
+        this.postTransactionBalance = posttransactionBalance;
     }
-
+    
+    //Setters and Getters
     public int getTransactionId() {
         return transactionId;
     }

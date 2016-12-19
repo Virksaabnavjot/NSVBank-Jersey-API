@@ -1,7 +1,12 @@
 package web.api.nsvbank.account;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 import web.api.nsvbank.transaction.Transaction;
 
 /**
@@ -12,25 +17,32 @@ import web.api.nsvbank.transaction.Transaction;
  * 
  * @Modification History
  * Modified on: 23rd November/2016 by Navjot at 7:45pm
+ * Modified on: Mon 19th December/2016 by Navjot at 7:03 pm
  */
 
-public class Account {
+@Entity
+@Table
+@XmlRootElement
+public class Account implements Serializable{
     //declaring data members
+    @Id
+    //    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
     private int accountNumber;
     private String sortCode;
     private Double currentBalance;
-    List <Transaction> transactions;
+    private List <Transaction> transactions;
     
     //constructor
-    public Account(){
-        id = 0;
-        accountNumber = 0;
-        sortCode = "";
-        currentBalance = 0.0;
-        transactions = new ArrayList<>();
+    public Account(int id, int accountNumber, String sortcode, Double currentBalance, List transactions){
+        this.id = id;
+        this.accountNumber = accountNumber;
+        this.sortCode = sortcode;
+        this.currentBalance = currentBalance;
+        this.transactions = transactions;
     }
-
+    
+    //setters and getters
     public void setId(int id) {
         this.id = id;
     }
