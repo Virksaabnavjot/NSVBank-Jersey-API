@@ -51,36 +51,6 @@ public class NSVBankWebServiceAPI {
         return Response.status(200).entity(gson.toJson(list)).build();
     }
     
-    @GET
-    @Path("/accounts")
-    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Account> accounts(){
-        AccountController accountController = new AccountController();
-        List <Account> accounts = accountController.getAccounts();
-        return accounts;
-    }
-    
-    @GET
-    @Path("/transactions")
-    @Produces("application/json")
-    public Response transactions(@Context UriInfo info){
-        TransactionController transactionController = new TransactionController();
-        List <Transaction> transactions = transactionController.getTransactions();
-        Gson gson = new Gson();
-        return Response.status(200).entity(gson.toJson(transactions)).build();
-    }
-    
-    @GET
-    @Path("/customers")
-    @Produces("application/json")
-    public Response customers(@Context UriInfo info){
-        CustomerController customerController = new CustomerController();
-        List <Customer> customers = customerController.getCustomers();
-        Gson gson = new Gson();
-        return Response.status(200).entity(gson.toJson(customers)).build();
-    }
-    
-    
     //===========================================
     //=         REST API methods for Customers
     //===========================================

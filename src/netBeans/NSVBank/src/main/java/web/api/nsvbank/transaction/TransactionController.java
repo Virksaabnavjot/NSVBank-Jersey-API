@@ -27,14 +27,9 @@ public class TransactionController {
     public TransactionController(){
         transactions = new ArrayList();
     }
-
-    public List<Transaction> getTransactions() {
-        Transaction transaction = new Transaction();
-        transactions.add(transaction);
-        return transactions;
-    }
     
-     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Transaction");
+    
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Transaction");
     private EntityManager em = emf.createEntityManager();
     private EntityTransaction tx = em.getTransaction();        
     

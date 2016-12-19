@@ -27,12 +27,6 @@ public class CustomerController {
     public CustomerController(){
         customers = new ArrayList();
     }
-    
-    public List<Customer> getCustomers() {
-        Customer customer = new Customer();
-        customers.add(customer);
-        return customers;
-    }
      
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Customer");
     private EntityManager em = emf.createEntityManager();
