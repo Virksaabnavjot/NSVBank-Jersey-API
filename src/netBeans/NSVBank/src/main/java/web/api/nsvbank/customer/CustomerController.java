@@ -21,6 +21,7 @@ import javax.persistence.criteria.Root;
  * Modified on: Wed 24th November/2016 by Soffyan at 11:00am
  * Modified by Valentin Buliga on 19 December 2016
  * Modified on: 19th December/2016 by Navjot at 7:18 pm
+ * Modified on: 20th December/2016 by Navjot at 1:17 am
  */
 public class CustomerController {
     List <Customer> customers;
@@ -33,9 +34,10 @@ public class CustomerController {
     private EntityManager em = emf.createEntityManager();
     private EntityTransaction tx = em.getTransaction();        
  
-        public List<Customer> retrieveCustomers() {
+    public List<Customer> retrieveCustomers() {
         return allEntries();
     }
+    
     public List<Customer> allEntries() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Customer> cq = cb.createQuery(Customer.class);
@@ -45,29 +47,29 @@ public class CustomerController {
         return allQuery.getResultList();
     }
         public Customer retrieveCustomer(int customerid) {
-        Customer test = em.find(Customer.class, customerid);
+        Customer customer = em.find(Customer.class, customerid);
         em.close();
-        return test;
+        return customer;
     }
     
-    public Customer createCustomer(Customer b) { 
-        Customer test = em.find(Customer.class, b.getCustomerId());
-        if (test == null) {
+    public Customer createCustomer(Customer c) { 
+        Customer customer = em.find(Customer.class, c.getCustomerId());
+        if (customer == null) {
             tx.begin();
-            em.persist(b);
+            em.persist(c);
             tx.commit();
             
             em.close();
         }
 
-        return b;
+        return c;
     }
     
     public void deleteCustomer(int customerid) {
-        Customer test = em.find(Customer.class, customerid);
-        if (test !=null) {
+        Customer customer = em.find(Customer.class, customerid);
+        if (customer !=null) {
             tx.begin();
-            em.remove(test);
+            em.remove(customer);
             tx.commit();
             
             em.close();

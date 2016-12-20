@@ -1,5 +1,6 @@
 //Project Github: https://github.com/Virksaabnavjot/NSVBank
 //The project may contains code snippets from examples available on Moodle.
+//We have followed JPA Book Test Example
 package web.api.nsvbank;
 
 import com.google.gson.Gson;

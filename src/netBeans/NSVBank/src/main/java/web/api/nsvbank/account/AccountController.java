@@ -49,32 +49,31 @@ public class AccountController {
         return account;
     }
     
-    public Account createAccount(Account b) { 
-        Account account = em.find(Account.class, b.getId());
+    public Account createAccount(Account a) { 
+        Account account = em.find(Account.class, a.getId());
         if (account == null) {
             tx.begin();
-            em.persist(b);
+            em.persist(a);
             tx.commit();
             
             em.close();
         }
 
-        return b;
+        return a;
     }
        
-    public Account UpdateAccount(Account b, int id) { 
+    public Account UpdateAccount(Account a, int id) { 
         Account account = em.find(Account.class, id);
         if (account != null) {
             tx.begin();
             em.remove(account);
-            em.persist(b);
+            em.persist(a);
             tx.commit();
             em.close();
         }
 
-        return b;
+        return a;
     }
-    
     
     public void deleteAccount(int id) {
         Account account = em.find(Account.class, id);

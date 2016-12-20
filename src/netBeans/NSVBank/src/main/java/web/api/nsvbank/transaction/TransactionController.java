@@ -18,9 +18,10 @@ import javax.persistence.criteria.Root;
  * Time: 4:02 pm (Dublin,Ireland)
  * 
  * @Modification History
- * Modified on: 23rd November/2016 by Navjot at 9:23pm
+ * Modified on: 23rd November/2016 by Navjot at 9:23 pm
  * Modified by Valentin Buliga on 19 December 2016
- * Modified on: 19th December/2016 by Navjot at 7:20pm
+ * Modified on: 19th December/2016 by Navjot at 7:20 pm
+ * Modified on: 20th December/2016 by Navjot at 1:22 am
  */
 public class TransactionController {
     List <Transaction> transactions;
@@ -29,12 +30,10 @@ public class TransactionController {
         transactions = new ArrayList();
     }
     
-    
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("Transaction");
     private EntityManager em = emf.createEntityManager();
     private EntityTransaction tx = em.getTransaction();        
     
-
     public List<Transaction> retrieveTransactions() {
         return allEntries();
     }
@@ -49,31 +48,29 @@ public class TransactionController {
     }
     
     public Transaction retrieveTransaction(int transactionId) {
-        Transaction test = em.find(Transaction.class, transactionId);
+        Transaction transaction = em.find(Transaction.class, transactionId);
         em.close();
-        return test;
+        return transaction;
     }
     
-    public Transaction createTransaction(Transaction b) { 
-        Transaction test = em.find(Transaction.class, b.getTransactionId());
-        if (test == null) {
+    public Transaction createTransaction(Transaction t) { 
+        Transaction transaction = em.find(Transaction.class, t.getTransactionId());
+        if (transaction == null) {
             tx.begin();
-            em.persist(b);
+            em.persist(t);
             tx.commit();
             
             em.close();
         }
 
-        return b;
+        return t;
     }
    
-        
-
     public void deleteTransaction(int id) {
-        Transaction test = em.find(Transaction.class, id);
-        if (test !=null) {
+        Transaction transaction = em.find(Transaction.class, id);
+        if (transaction !=null) {
             tx.begin();
-            em.remove(test);
+            em.remove(transaction);
             tx.commit();
             
             em.close();
