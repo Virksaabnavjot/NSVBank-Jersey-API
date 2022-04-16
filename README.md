@@ -6,3 +6,6 @@ Team project: I lead the project with a team of 4 people, managing project, prov
 Web API URL: http://localhost:8080/api/bank/
 
 This project is the work of Group(Nav,Valintin, Soffiyan and Ryan) and if anything is referenced it is the work of the owners of the that work. Copying or Distributing the project/code is not permitted in any circumstances and if found will be reported to the college.
+
+
+Copyrights - Navjot Singh Virk (https://navjot.mrvirk.com & https://mrvirk.com)
